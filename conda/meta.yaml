@@ -1,0 +1,32 @@
+{% set data= load_setup_py_data() %}
+package:
+  name: headerservice
+  version: {{environ.get("HEADERSERVICE_VERSION", 1.2.0)}}
+
+source:
+  git_url: https://github.com/lsst-dm/HeaderService
+  git_rev: tags/{{environ.get("HEADERSERVICE_VERSION", 1.2.0)}}
+
+build:
+  skip: True #[win]
+  script_env:
+    - CONDA_PREFIX
+  script: python setup.py install --prefix=$CONDA_PREFIX/HeaderService --install-lib=$CONDA_PREFIX/HeaderService/python
+
+requirements:
+  build:
+    - python
+    - pip
+    - fitsio ==1.0.4
+    - pyyaml
+    - astropy
+    - ts-salobj =={{environ.get("LSSTTS_SALOBJ_VERSION", "v5.0.0")}}
+    - ts-idl
+  run:
+    - python
+    - pip
+    - fitsio ==1.0.4
+    - pyyaml
+    - astropy
+    - ts-salobj =={{environ.get("LSSTTS_SALOBJ_VERSION", "v5.0.0")}}
+    - ts-idl
