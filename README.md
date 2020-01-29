@@ -18,7 +18,7 @@ conda install --use-local headerservice -c conda-forge -c lsstts
 
 # Upload
 ```
-anaconda --force -u lsstts $HOME/miniconda3/conda-bld/linux-64/headerservice-1.2.0-py37_0.tar.bz2
+anaconda upload --force -u lsstts $HOME/miniconda3/conda-bld/linux-64/headerservice-1.2.0-py37_0.tar.bz2
 ```
 
 # Build on T&SS docker
