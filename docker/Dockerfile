@@ -15,12 +15,12 @@ ENV USER=`whoami`
 
 ARG DDS_DOMAIN
 ENV LSST_DDS_DOMAIN=${DDS_DOMAIN}
-RUN echo $LSST_DDS_DOMAIN
 
 # Add to the init file
-RUN echo "source .setup.sh" > $HOME/setup_HeaderService.env && \
-    echo "source \$CONDA_PREFIX/HeaderService/setpath.sh \$CONDA_PREFIX/HeaderService" >> $HOME/setup_HeaderService.env && \
-    echo "export LSST_DDS_DOMAIN=$LSST_DDS_DOMAIN" >> $HOME/setup_HeaderService.env
+RUN echo "source ~/miniconda3/bin/activate" > $HOME/setup_HeaderService.env && \
+    echo "source \$OSPL_HOME/release.com" >> $HOME/setup_HeaderService.env && \
+    echo "source \$CONDA_PREFIX/HeaderService/setpath.sh \$CONDA_PREFIX/HeaderService" >> $HOME/setup_HeaderService.env
+#   echo "export LSST_DDS_DOMAIN=$LSST_DDS_DOMAIN" >> $HOME/setup_HeaderService.env
 
 # The Startup script in lieu of CMD/ENTRYPOINT
 RUN echo "source $HOME/setup_HeaderService.env" > $HOME/start_HeaderService.sh && \
