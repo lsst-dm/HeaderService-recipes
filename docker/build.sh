@@ -5,7 +5,7 @@ export HEADERSERVICE_VERSION=1.4.1
 export DDS_DOMAIN=auxtelpath
 export TAG=v${HEADERSERVICE_VERSION}_salobj_v${LSSTTS_SALOBJ_VERSION}_idl_v${LSSTTS_SALIDL_VERSION}_xml_v${LSSTTS_XML_VERSION}
 
-docker build . -t lsstts/at_headerservice:$TAG \
+docker build . -t lsstts/headerservice:$TAG \
        --build-arg LSSTTS_SALIDL_VERSION \
        --build-arg LSSTTS_SALOBJ_VERSION \
        --build-arg LSSTTS_XML_VERSION \
