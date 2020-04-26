@@ -2,7 +2,9 @@ ARG LSSTTS_XML_VERSION
 ARG LSSTTS_SALOBJ_VERSION
 ARG LSSTTS_SALIDL_VERSION
 
-FROM lsstts/deploy-env:salobj_v${LSSTTS_SALOBJ_VERSION}_idl_v${LSSTTS_SALIDL_VERSION}_xml_v${LSSTTS_XML_VERSION}
+#FROM lsstts/deploy-env:salobj_v${LSSTTS_SALOBJ_VERSION}_idl_v${LSSTTS_SALIDL_VERSION}_xml_v${LSSTTS_XML_VERSION}
+FROM lsstts/deploy-env:salobj_${LSSTTS_SALOBJ_VERSION}
+
 
 LABEL name="LSST AuxTel Header Service Development Environment" \
     vendor="LSST" \
