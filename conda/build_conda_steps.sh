@@ -1,4 +1,4 @@
-export HEADERSERVICE_VERSION=2.0.0
+export HEADERSERVICE_VERSION=2.1.0
 export LSSTTS_SALOBJ_VERSION=5.10.0
 conda-build . -c conda-forge -c lsstts
 echo " "
