@@ -24,6 +24,10 @@ RUN echo "source ~/miniconda3/bin/activate" > $HOME/setup_HeaderService.env && \
     echo "source \$CONDA_PREFIX/HeaderService/setpath.sh \$CONDA_PREFIX/HeaderService" >> $HOME/setup_HeaderService.env
 #   echo "export LSST_DDS_DOMAIN=$LSST_DDS_DOMAIN" >> $HOME/setup_HeaderService.env
 
-# The Startup script in lieu of CMD/ENTRYPOINT
-RUN echo "source $HOME/setup_HeaderService.env" > $HOME/start_HeaderService.sh && \
-    echo "ATHS_salobj -c \$HEADERSERVICE_DIR/etc/conf/atTelemetry.yaml --send_efd_message" >> $HOME/start_HeaderService.sh
+# The AuxTel Startup script in lieu of CMD/ENTRYPOINT
+RUN cat $HOME/setup_HeaderService.env > $HOME/start_ATHeaderService.sh && \
+    echo "headerservice -c \$HEADERSERVICE_DIR/etc/conf/atTelemetry.yaml" >> $HOME/start_ATHeaderService.sh
+
+# The ComCam Startup script in lieu of CMD/ENTRYPOINT
+RUN cat $HOME/setup_HeaderService.env > $HOME/start_CCHeaderService.sh && \
+    echo "headerservice -c \$HEADERSERVICE_DIR/etc/conf/ccTelemetry.yaml" >> $HOME/start_CCHeaderService.sh
