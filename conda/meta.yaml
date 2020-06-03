@@ -11,6 +11,7 @@ build:
   skip: True #[win]
   script_env:
     - CONDA_PREFIX
+
   script: python setup.py install --prefix=$CONDA_PREFIX/HeaderService --install-lib=$CONDA_PREFIX/HeaderService/python
 
 requirements:
@@ -20,13 +21,15 @@ requirements:
     - fitsio ==1.0.4
     - pyyaml
     - astropy
-    - ts-salobj =={{environ.get("LSSTTS_SALOBJ_VERSION", "v5.0.0")}}
+    - ts-salobj
     - ts-idl
+    - ts-dds
   run:
     - python
     - pip
     - fitsio ==1.0.4
     - pyyaml
     - astropy
-    - ts-salobj =={{environ.get("LSSTTS_SALOBJ_VERSION", "v5.0.0")}}
+    - ts-salobj
     - ts-idl
+    - ts-dds
