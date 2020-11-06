@@ -28,7 +28,7 @@ ENV USER=`whoami`
 ARG DDS_DOMAIN
 ENV LSST_DDS_DOMAIN=${DDS_DOMAIN}
 
-# Add to the init file
+# Extra utils init files
 RUN echo "source /opt/lsst/software/stack/miniconda/bin/activate" > $HOME/setup_HeaderService.env && \
     echo "source ${HOME}/.ospl_env.sh" >> $HOME/setup_HeaderService.env && \
     echo "source \$OSPL_HOME/release.com" >> $HOME/setup_HeaderService.env && \
@@ -42,3 +42,10 @@ RUN echo "source $HOME/setup_HeaderService.env" > $HOME/start_ATHeaderService.sh
 
 RUN echo "source $HOME/setup_HeaderService.env" > $HOME/start_CCHeaderService.sh && \
     echo "headerservice -c \$HEADERSERVICE_DIR/etc/conf/ccTelemetry.yaml" >> $HOME/start_CCHeaderService.sh
+
+# The new .startup file
+COPY startup.sh /home/saluser/.startup.sh
+USER root
+RUN chown saluser:saluser /home/saluser/.startup.sh && \
+    chmod a+x /home/saluser/.startup.sh
+USER saluser
