@@ -1,4 +1,4 @@
-export HEADERSERVICE_VERSION=2.7.0
+export HEADERSERVICE_VERSION=2.8.0
 conda-build . -c conda-forge -c lsstts
 echo " "
 echo "--------------------"
