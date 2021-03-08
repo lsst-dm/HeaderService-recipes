@@ -18,7 +18,7 @@ requirements:
   build:
     - python
     - pip
-    - fitsio ==1.0.4
+    - fitsio
     - pyyaml
     - astropy
     - ts-salobj
@@ -27,7 +27,7 @@ requirements:
   run:
     - python
     - pip
-    - fitsio ==1.0.4
+    - fitsio
     - pyyaml
     - astropy
     - ts-salobj
