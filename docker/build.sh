@@ -16,3 +16,5 @@ docker build . -t ts-dockerhub.lsst.org/headerservice:ts-$TAG \
        --build-arg LSSTTS_DDSCONFIG_VERSION\
        --build-arg HEADERSERVICE_VERSION \
        --build-arg DDS_DOMAIN
+echo "Execute:"
+echo "   docker push ts-dockerhub.lsst.org/headerservice:ts-$TAG"
