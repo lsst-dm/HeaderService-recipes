@@ -20,9 +20,20 @@ RUN mkdir -p /opt/lsst && \
     git clone https://github.com/lsst-ts/ts_ddsconfig --branch ${LSSTTS_DDSCONFIG_VERSION}
 ENV OSPL_URI file:///opt/lsst/ts_ddsconfig/config/ospl-shmem.xml
 
+# Pre-reqs for HeaderService
+ARG MINICONDA_PATH=/opt/lsst/software/stack/miniconda
+RUN source ${MINICONDA_PATH}/bin/activate \
+    && conda install -y python=3.8 fitsio pyyaml
+
 ARG HEADERSERVICE_VERSION
-RUN source /opt/lsst/software/stack/miniconda/bin/activate && \
-    conda install headerservice=$HEADERSERVICE_VERSION -c conda-forge -c lsstts
+RUN source ${MINICONDA_PATH}/bin/activate && \
+    mkdir -p /tmp/repos && \
+    cd /tmp/repos && \
+    git clone https://github.com/lsst-dm/HeaderService -b ${HEADERSERVICE_VERSION} && \
+    cd HeaderService && \
+    export PYTHONPATH=$PYTHONPATH:$CONDA_PREFIX/HeaderService/python &&\
+    python setup.py install --prefix=$CONDA_PREFIX/HeaderService --install-lib=$CONDA_PREFIX/HeaderService/python --install-data $CONDA_PREFIX/HeaderService
+
 ENV USER=`whoami`
 
 ARG DDS_DOMAIN
