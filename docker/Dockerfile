@@ -32,7 +32,11 @@ RUN source ${MINICONDA_PATH}/bin/activate && \
     git clone https://github.com/lsst-dm/HeaderService -b ${HEADERSERVICE_VERSION} && \
     cd HeaderService && \
     export PYTHONPATH=$PYTHONPATH:$CONDA_PREFIX/HeaderService/python &&\
-    python setup.py install --prefix=$CONDA_PREFIX/HeaderService --install-lib=$CONDA_PREFIX/HeaderService/python --install-data $CONDA_PREFIX/HeaderService
+    python setup.py install --prefix=$CONDA_PREFIX/HeaderService --install-lib=$CONDA_PREFIX/HeaderService/python --install-data $CONDA_PREFIX/HeaderService && \
+    # Hack to copy data files, setup.py is installing it in bdist instead
+    mkdir -p $CONDA_PREFIX/HeaderService/etc && \
+    cp -pvr etc/LATISS etc/ComCam etc/TestCamera/E2V etc/TestCamera/ITL etc/conf $CONDA_PREFIX/HeaderService/etc && \
+    cp -pvr setpath.sh $CONDA_PREFIX/HeaderService
 
 ENV USER=`whoami`
 
