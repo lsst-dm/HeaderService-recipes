@@ -59,6 +59,9 @@ RUN echo "source $HOME/setup_HeaderService.env" > $HOME/start_CCHeaderService.sh
 # The new .startup file
 COPY startup.sh /home/saluser/.startup.sh
 USER root
+
+RUN yum -y install which
+
 RUN chown saluser:saluser /home/saluser/.startup.sh && \
     chmod a+x /home/saluser/.startup.sh
 USER saluser
