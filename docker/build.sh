@@ -1,6 +1,3 @@
-export LSSTTS_SALOBJ_VERSION=7.0.0.rc.2
-export LSSTTS_XML_VERSION=11.0.1
-export LSSTTS_SALIDL_VERSION=3.7.0
 export LSSTTS_DDSCONFIG_VERSION=v0.9.0
 export HEADERSERVICE_VERSION=3.0.0
 export LSSTTS_DEPLOY_VERSION=c0025
@@ -10,6 +7,7 @@ export TAG=v${HEADERSERVICE_VERSION}_${LSSTTS_DEPLOY_VERSION}
 docker login ts-dockerhub.lsst.org
 
 docker build . -t ts-dockerhub.lsst.org/headerservice:ts-$TAG \
+       --no-cache \
        --build-arg LSSTTS_SALIDL_VERSION \
        --build-arg LSSTTS_SALOBJ_VERSION \
        --build-arg LSSTTS_XML_VERSION \
