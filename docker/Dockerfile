@@ -33,16 +33,12 @@ RUN source ${MINICONDA_PATH}/bin/activate && \
 
 ENV USER=`whoami`
 
-ARG DDS_DOMAIN
-ENV LSST_DDS_DOMAIN=${DDS_DOMAIN}
-
 # Extra utils init files
 RUN echo "source /opt/lsst/software/stack/miniconda/bin/activate" > $HOME/setup_HeaderService.env && \
     echo "source ${HOME}/.ospl_env.sh" >> $HOME/setup_HeaderService.env && \
     echo "source \$OSPL_HOME/release.com" >> $HOME/setup_HeaderService.env && \
     echo "export OSPL_URI=file:///opt/lsst/ts_ddsconfig/config/ospl-shmem.xml" >> $HOME/setup_HeaderService.env && \
     echo "source \$CONDA_PREFIX/HeaderService/setpath.sh \$CONDA_PREFIX/HeaderService" >> $HOME/setup_HeaderService.env
-#   echo "export LSST_DDS_DOMAIN=$LSST_DDS_DOMAIN" >> $HOME/setup_HeaderService.env
 
 # The Startup script in lieu of CMD/ENTRYPOINT
 RUN echo "source $HOME/setup_HeaderService.env" > $HOME/start_ATHeaderService.sh && \
