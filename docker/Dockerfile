@@ -18,7 +18,7 @@ ENV OSPL_URI file:///opt/lsst/ts_ddsconfig/config/ospl-shmem.xml
 # Pre-reqs for HeaderService
 ARG MINICONDA_PATH=/opt/lsst/software/stack/miniconda
 RUN source ${MINICONDA_PATH}/bin/activate \
-    && conda install -y python=3.8 fitsio pyyaml \
+    && conda install -y fitsio pyyaml \
     # Need to downgrade to setuptools=59.8.0
     && conda install -y setuptools=59.8.0
 
