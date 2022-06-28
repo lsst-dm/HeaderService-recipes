@@ -9,11 +9,11 @@ LABEL name="LSST Header Service" \
     license="GPLv3"
 
 # Install the OSPL configuration
-ARG LSSTTS_DDSCONFIG_VERSION
-RUN mkdir -p /opt/lsst && \
-    cd /opt/lsst && \
-    git clone https://github.com/lsst-ts/ts_ddsconfig --branch ${LSSTTS_DDSCONFIG_VERSION}
-ENV OSPL_URI file:///opt/lsst/ts_ddsconfig/config/ospl-shmem.xml
+#ARG LSSTTS_DDSCONFIG_VERSION
+#RUN mkdir -p /opt/lsst && \
+#    cd /opt/lsst && \
+#    git clone https://github.com/lsst-ts/ts_ddsconfig --branch ${LSSTTS_DDSCONFIG_VERSION}
+#ENV OSPL_URI file:///opt/lsst/ts_ddsconfig/config/ospl-shmem.xml
 
 # Pre-reqs for HeaderService
 ARG MINICONDA_PATH=/opt/lsst/software/stack/miniconda
