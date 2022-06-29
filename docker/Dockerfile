@@ -8,6 +8,7 @@ LABEL name="LSST Header Service" \
     vendor="LSST" \
     license="GPLv3"
 
+# Not needed now, comes with deploy container
 # Install the OSPL configuration
 #ARG LSSTTS_DDSCONFIG_VERSION
 #RUN mkdir -p /opt/lsst && \
@@ -49,9 +50,9 @@ RUN echo "source $HOME/setup_HeaderService.env" > $HOME/start_CCHeaderService.sh
 
 # The new .startup file
 COPY startup.sh /home/saluser/.startup.sh
-USER root
 
-RUN yum -y install which
+USER root
+RUN yum -y install which procps
 
 RUN chown saluser:saluser /home/saluser/.startup.sh && \
     chmod a+x /home/saluser/.startup.sh
