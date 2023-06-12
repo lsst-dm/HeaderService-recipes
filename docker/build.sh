@@ -6,10 +6,10 @@ export TAG=${LSSTTS_DEPLOY_VERSION}
 
 docker login ts-dockerhub.lsst.org
 
-docker build . -t ts-dockerhub.lsst.org/headerservice:ts-$TAG \
+docker build . -t ts-dockerhub.lsst.org/headerservice:$TAG \
        --no-cache \
        --build-arg LSSTTS_DEPLOY_VERSION\
        --build-arg LSSTTS_DDSCONFIG_VERSION\
        --build-arg HEADERSERVICE_VERSION
 echo "Execute:"
-echo "   docker push ts-dockerhub.lsst.org/headerservice:ts-$TAG"
+echo "   docker push ts-dockerhub.lsst.org/headerservice:$TAG"
