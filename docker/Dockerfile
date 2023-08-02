@@ -11,9 +11,7 @@ LABEL name="LSST Header Service" \
 # Pre-reqs for HeaderService
 ARG MINICONDA_PATH=/opt/lsst/software/stack/miniconda
 RUN source ${MINICONDA_PATH}/bin/activate \
-    && mamba install -y fitsio pyyaml \
-    # Need to downgrade to setuptools=59.8.0
-    && mamba install -y setuptools=59.8.0
+    && conda install -y fitsio pyyaml
 
 ARG HEADERSERVICE_VERSION
 RUN source ${MINICONDA_PATH}/bin/activate && \
@@ -22,7 +20,9 @@ RUN source ${MINICONDA_PATH}/bin/activate && \
     git clone https://github.com/lsst-dm/HeaderService -b ${HEADERSERVICE_VERSION} && \
     cd HeaderService && \
     export PYTHONPATH=$PYTHONPATH:$CONDA_PREFIX/HeaderService/python &&\
-    python setup.py install --prefix=$CONDA_PREFIX/HeaderService --install-lib=$CONDA_PREFIX/HeaderService/python --install-data $CONDA_PREFIX/HeaderService
+    python setup.py install --prefix=$CONDA_PREFIX/HeaderService --install-lib=$CONDA_PREFIX/HeaderService/python --install-data $CONDA_PREFIX/HeaderService &&\
+    python setup.py install_data --install-dir=$CONDA_PREFIX/HeaderService
+
 
 ENV USER=`whoami`
 
