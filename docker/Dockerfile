@@ -11,7 +11,7 @@ LABEL name="LSST Header Service" \
 # Pre-reqs for HeaderService
 ARG MINICONDA_PATH=/opt/lsst/software/stack/miniconda
 RUN source ${MINICONDA_PATH}/bin/activate \
-    && conda install -y fitsio pyyaml
+    && mamba install -y fitsio pyyaml
 
 ARG HEADERSERVICE_VERSION
 RUN source ${MINICONDA_PATH}/bin/activate && \
